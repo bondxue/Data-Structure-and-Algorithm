@@ -43,3 +43,36 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+def is_from_Bangalore(call):
+    return call[0].startswith('(080)')
+
+def get_areacode(call): 
+    if call[1].startswith('('): # fixed line
+        return call[1].split(')')[0].strip('()')
+    elif ' ' in call[1]: # mobile
+        return call[1][:4] 
+    else: # telemarketer
+        return '140'
+
+areacodes = set()
+count = 0
+total_count = 0
+
+for call in calls:
+    if is_from_Bangalore(call):
+        areacode = get_areacode(call)
+        if areacode == '080':
+            count += 1 
+        total_count += 1
+        areacodes.add(areacode)
+areacodes = sorted(list(areacodes))
+
+print( "The numbers called by people in Bangalore have codes:" )
+for code in areacodes:
+    print(code)
+
+print('{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.'.format(count/total_count))
+
+
+         

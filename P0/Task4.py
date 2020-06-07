@@ -25,3 +25,12 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
+call_out = set([call[0] for call in calls])
+call_in = set([call[1] for call in calls])
+text_out = set([text[0] for text in texts])
+text_in = set([text[1] for text in texts])
+
+print( "These numbers could be telemarketers: " )
+telemarketers = sorted(list(call_out-call_in-text_out-text_in))
+for num in telemarketers:
+    print(num)
