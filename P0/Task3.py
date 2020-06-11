@@ -48,9 +48,9 @@ def is_from_Bangalore(call):
     return call[0].startswith('(080)')
 
 def get_areacode(call): 
-    if call[1].startswith('('): # fixed line
+    if call[1].startswith('(0'): # fixed line
         return call[1].split(')')[0].strip('()')
-    elif ' ' in call[1]: # mobile
+    elif ' ' in call[1] and call[1][0] in {'7', '8', '9'}: # mobile
         return call[1][:4] 
     else: # telemarketer
         return '140'
@@ -72,7 +72,7 @@ print( "The numbers called by people in Bangalore have codes:" )
 for code in areacodes:
     print(code)
 
-print('{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.'.format(count/total_count))
+print('{:.2f} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.'.format(count/total_count*100))
 
 
          

@@ -21,13 +21,13 @@ So complexity of the program is roughly $O(n\times4 + n + 1) \approx O(n)$.
 
 #### Task3.py
 
-+ One `for` loop with complexity $O(n)$, in each iteration check `is_from_Bangalore()` with complexity $O(1)$ and `get_areacode()` with complexity $O(n)$, add 1 for two `count` with complexity $O(1)$ and `set.add()` with $O(1)$. So total `for` loop with $O(n^2)$
++ One `for` loop with complexity $O(n)$, in each iteration check `is_from_Bangalore()` with complexity $O(1)$ and `get_areacode()` with constant complexity $O(1)$, add 1 for two `count` with complexity $O(1)$ and `set.add()` with $O(1)$. So total `for` loop with $O(n)$
 
 + sort list with complexity $O(nlog(n))$.
 + `for` loop `print` with $O(n)$
 + final `print` with `divide` calcuation with $0(1)$
 
-So complexity of the program is roughly $O(n^2+ nlog(n)+n+1)\approx O(n^2)$
+So complexity of the program is roughly $O(n+ nlog(n)+n+1)\approx O(nlog(n))$
 
 #### Task4.py
 
