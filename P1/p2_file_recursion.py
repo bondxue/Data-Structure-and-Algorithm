@@ -16,17 +16,17 @@ def find_files(suffix, path):
     Returns:
        a list of paths
     """
+    paths = []
 
     if path.endswith(suffix):
-        print(path)
-    else:
-        if os.path.isdir(path):
-            for file in os.listdir(path):
-                find_files(suffix, os.path.join(path, file))
-
+        paths.append(path)
+    elif os.path.isdir(path):
+        for file in os.listdir(path):
+            paths.extend(find_files(suffix, os.path.join(path, file)))
+    return paths
 # Test Cases
-find_files(".c", "./testdir")
+print(find_files(".c", "./testdir"))
 print("--------------------")
-find_files(".h", "./testdir")
+print(find_files(".h", "./testdir"))
 print("--------------------")
-find_files(".z", "./testdir")
+print(find_files(".py", "./testdir"))
