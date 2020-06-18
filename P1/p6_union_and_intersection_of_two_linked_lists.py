@@ -40,15 +40,37 @@ class LinkedList:
 
         return size
 
+    def values(self):
+        values = []
+        node = self.head
+        while node is not None:
+            values.append(node.value)
+            node = node.next
+        return values
+
+    def contain(self, value):
+        for v in self.values():
+            if v == value:
+                return True
+        return False
+
 
 def union(llist_1, llist_2):
-    # Your Solution Here
-    pass
+    union_llist = LinkedList()
+    for value in llist_1.values():
+        if not union_llist.contain(value):
+            union_llist.append(value)
+
+    for value in llist_2.values():
+        if not union_llist.contain(value):
+            union_llist.append(value)
+    return union_llist
 
 
 def intersection(llist_1, llist_2):
-    # Your Solution Here
-    pass
+    intersection_llist = LinkedList()
+
+
 
 
 # Test case 1
