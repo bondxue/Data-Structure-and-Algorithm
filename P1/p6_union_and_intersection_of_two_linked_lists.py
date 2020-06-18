@@ -69,8 +69,10 @@ def union(llist_1, llist_2):
 
 def intersection(llist_1, llist_2):
     intersection_llist = LinkedList()
-
-
+    for value in llist_1.values():
+        if llist_2.contain(value) and not intersection_llist.contain(value):
+            intersection_llist.append(value)
+    return intersection_llist
 
 
 # Test case 1
