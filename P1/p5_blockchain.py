@@ -49,6 +49,6 @@ print(chain.head.data)  # print block1
 
 block2 = chain.head.next
 block3 = chain.head.next.next
-print(block2.hash == block3.previous_hash)  # print True
+print('Pass' if block2.hash == block3.previous_hash else 'Fail')  # print Pass
 
 print(block3.data)  # print block3

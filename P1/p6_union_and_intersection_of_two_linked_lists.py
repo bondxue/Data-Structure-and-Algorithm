@@ -64,7 +64,8 @@ def union(llist_1, llist_2):
     for value in llist_2.values():
         if not union_llist.contain(value):
             union_llist.append(value)
-    return union_llist
+    if union_llist.size() != 0:
+        return union_llist
 
 
 def intersection(llist_1, llist_2):
@@ -72,7 +73,9 @@ def intersection(llist_1, llist_2):
     for value in llist_1.values():
         if llist_2.contain(value) and not intersection_llist.contain(value):
             intersection_llist.append(value)
-    return intersection_llist
+
+    if intersection_llist.size() != 0:
+        return intersection_llist
 
 
 # Test case 1
@@ -93,7 +96,7 @@ print(union(linked_list_1, linked_list_2))
 print(intersection(linked_list_1, linked_list_2))
 
 # Test case 2
-
+print('-' * 30)
 linked_list_3 = LinkedList()
 linked_list_4 = LinkedList()
 
@@ -108,3 +111,20 @@ for i in element_2:
 
 print(union(linked_list_3, linked_list_4))
 print(intersection(linked_list_3, linked_list_4))
+
+# Test case 3
+print('-' * 30)
+linked_list_5 = LinkedList()
+linked_list_6 = LinkedList()
+
+element_1 = [None, 2, 3, 4]
+element_2 = [1, 2, 3, 5, 7, 9]
+
+for i in element_1:
+    linked_list_5.append(i)
+
+for i in element_2:
+    linked_list_6.append(i)
+
+print(union(linked_list_5, linked_list_6))
+print(intersection(linked_list_5, linked_list_6))
