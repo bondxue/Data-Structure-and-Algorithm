@@ -47,12 +47,6 @@ sub_child.add_user(sub_child_user)
 child.add_group(sub_child)
 parent.add_group(child)
 
-print(sub_child.get_users())
-print(parent.get_users())
-print(child.get_users())
-print(parent.get_groups())
-print(child.get_groups())
-
 # test cases
 print(is_user_in_group("sub_child_user", parent))  # return True
 print(is_user_in_group("sub_child_user", child))  # return True
