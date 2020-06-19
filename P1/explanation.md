@@ -23,7 +23,7 @@ Since we have to look through every directory to check each file with no limit t
 
 The time complexity is Big O of N times the number of directories, since for each directory we call our function again. The space complexity can grow exponentially with each recursive call.
 
-Big O Notation Time: O(n)  Space: O(n log n)
+Big O Notation Time: O(n)  Space: O(n)
 
 
 
@@ -63,7 +63,7 @@ Since we merely iterate through a linked list, and do some hashing functions, th
 
 In my solution, duplicates are removed, and order is by the input order. The algorithms for both `union` and `intersection` are straightforward. 
 
-The union algorithm has a complexity of O(n^2). The intersection algorithm has a complexity of O(n^3)
+The union algorithm has a complexity of O(n^2). The intersection algorithm has a complexity of O(n^2)
 
 
 

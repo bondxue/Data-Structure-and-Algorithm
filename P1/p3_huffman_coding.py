@@ -9,22 +9,23 @@ def make_frequencies(message):
             char_freq[char] += 1
         else:
             char_freq[char] = 1
-    return char_freq.items()
+    freq_char = [(item[1], item[0]) for item in char_freq.items()]
+    return freq_char
 
 
-def make_tree(char_freq):
-    # char_freq: list of tuples (char, frequency)
+def make_tree(freq_char):
+    # freq_char: list of tuples (frequency, char)
     heap = []
-    for lf in char_freq:
+    for lf in freq_char:
         heapq.heappush(heap, [lf])
     while len(heap) > 1:
         left_child = heapq.heappop(heap)
         right_child = heapq.heappop(heap)
-        label0, freq0 = left_child[0]
-        label1, freq1 = right_child[0]
+        freq0, label0 = left_child[0]
+        freq1, label1 = right_child[0]
         label = ''.join(sorted(label0 + label1))
         freq = freq0 + freq1
-        node = [(label, freq), left_child, right_child]
+        node = [(freq, label), left_child, right_child]
         heapq.heappush(heap, node)
     return heap.pop()
 
@@ -32,7 +33,7 @@ def make_tree(char_freq):
 def walk_tree(code_tree, code_map, code_prefix):
     # tree: [value, left_child, right_child]
     if len(code_tree) == 1:
-        label, freq = code_tree[0]
+        freq, label = code_tree[0]
         code_map[label] = code_prefix
     else:
         value, left_child, right_child = code_tree
@@ -62,7 +63,7 @@ def huffman_decoding(data, tree):
         else:
             code_tree = code_tree[2]
         if len(code_tree) == 1:
-            label, freq = code_tree[0]
+            freq, label = code_tree[0]
             decode_chars.append(label)
             code_tree = tree
     return ''.join(decode_chars)
@@ -70,7 +71,7 @@ def huffman_decoding(data, tree):
 
 if __name__ == "__main__":
 
-    a_great_sentence = "The bird is the word"
+    a_great_sentence = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUV"
 
     print("The size of the data is: {}".format(sys.getsizeof(a_great_sentence)))
     print("The content of the data is: {}".format(a_great_sentence))
@@ -117,23 +118,23 @@ if __name__ == "__main__":
     print("The size of the decoded data is: {}".format(sys.getsizeof(decoded_data)))
     print("The content of the encoded data is: {}".format(decoded_data))
 
-# The size of the data is: 69
-# The content of the data is: The bird is the word
-# The size of the encoded data is: 44
-# The content of the encoded data is: 000000000010000001000000010000000000000000000010000010001000000001000000000000000010010000000000001000000100000001000000000001000010001000000001
-# The size of the decoded data is: 69
-# The content of the encoded data is: The bird is the word
+# The size of the data is: 97
+# The content of the data is: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUV
+# The size of the encoded data is: 64
+# The content of the encoded data is: 11011011011111100011100111101011101111110011110111111011111100000000010001000011001000010100110001110100001001010100101101100011010111001111100000100001100010100011100100100101100110100111101000101001101010101011101100101101101110101111110000110001110010110011110100110101
+# The size of the decoded data is: 97
+# The content of the encoded data is: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUV
 # ------------------------------------------------------------
 # The size of the data is: 68
 # The content of the data is: Something for test.
-# The size of the encoded data is: 44
-# The content of the encoded data is: 00000000000100010000010000000000110000000100000010000100000000100000000000000000000001000100100000000000001000000000010110000000000001
+# The size of the encoded data is: 36
+# The content of the encoded data is: 11111100011000011001000101011100111110001010010101110110000101111011110
 # The size of the decoded data is: 68
 # The content of the encoded data is: Something for test.
 # ------------------------------------------------------------
 # The size of the data is: 72
 # The content of the data is: Another wonderful test.
-# The size of the encoded data is: 48
-# The content of the encoded data is: 00000000000010000001000001001000000001000000000010000100000000000000100000100000010000000000010000000000100001000000000101000000010000000000000000100000000001000100100000000000001
+# The size of the encoded data is: 36
+# The content of the encoded data is: 1100111110001011110010000101110110000111111010100001110110101111010111101100010010111000
 # The size of the decoded data is: 72
 # The content of the encoded data is: Another wonderful test.
