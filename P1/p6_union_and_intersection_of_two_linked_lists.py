@@ -56,7 +56,13 @@ class LinkedList:
 
 
 def union(llist_1, llist_2):
+    if llist_1.size() == 0:
+        return llist_2
+    elif llist_2.size() == 0:
+        return llist_1
+
     union_llist = LinkedList()
+
     for value in llist_1.values():
         if not union_llist.contain(value):
             union_llist.append(value)
@@ -70,6 +76,9 @@ def union(llist_1, llist_2):
 
 def intersection(llist_1, llist_2):
     intersection_llist = LinkedList()
+    if llist_1.size() == 0 or llist_2 == 0:
+        return intersection_llist
+
     for value in llist_1.values():
         if llist_2.contain(value) and not intersection_llist.contain(value):
             intersection_llist.append(value)
@@ -100,13 +109,13 @@ print('-' * 30)
 linked_list_3 = LinkedList()
 linked_list_4 = LinkedList()
 
-element_1 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 23]
-element_2 = [1, 7, 8, 9, 11, 21, 1]
+element_3 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 23]
+element_4 = [1, 7, 8, 9, 11, 21, 1]
 
-for i in element_1:
+for i in element_3:
     linked_list_3.append(i)
 
-for i in element_2:
+for i in element_4:
     linked_list_4.append(i)
 
 print(union(linked_list_3, linked_list_4))
@@ -117,14 +126,26 @@ print('-' * 30)
 linked_list_5 = LinkedList()
 linked_list_6 = LinkedList()
 
-element_1 = [None, 2, 3, 4]
-element_2 = [1, 2, 3, 5, 7, 9]
+element_5 = [None, 2, 3, 4]
+element_6 = [1, 2, 3, 5, 7, 9]
 
-for i in element_1:
+for i in element_5:
     linked_list_5.append(i)
 
-for i in element_2:
+for i in element_6:
     linked_list_6.append(i)
 
 print(union(linked_list_5, linked_list_6))
 print(intersection(linked_list_5, linked_list_6))
+
+# Edge case test when one of the linklist is empty
+print('-' * 30)
+linked_list_7 = LinkedList()
+linked_list_8 = LinkedList()
+element_7 = [3, 2, 4, 35, 6, 65, 6, 4, 3, 23]
+
+for i in element_7:
+    linked_list_7.append(i)
+
+print(union(linked_list_7, linked_list_8))
+print(intersection(linked_list_7, linked_list_8))

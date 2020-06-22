@@ -39,7 +39,7 @@ For decoding, we simply iterate over each "bit" in the binary string and append 
 
 For Big O we loop over all characters, we then loop over all frequencies to make the heap. We also recurse through the tree when making the map of characters to binary code. So I believe our performance is O(3n). For space complexity we use a dictionary, a heap, and a recursive call in makeMap, giving us Big O(3n log n)
 
-Big O Notation Time: O(n) Space: O(n log n)
+Big O Notation Time: O(n log n) Space: O(n)
 
 
 

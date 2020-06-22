@@ -1,5 +1,6 @@
 import sys
 import heapq
+import logging
 
 
 def make_frequencies(message):
@@ -48,25 +49,41 @@ def make_code_map(code_tree):
 
 
 def huffman_encoding(data):
-    code_tree = make_tree(make_frequencies(data))
-    code_map = make_code_map(code_tree)
-    encode = ''.join([code_map[char] for char in data])
-    return encode, code_tree
+    if data == "":
+        msg = "empty string cannot be encoded."
+        logging.error(msg)
+        return "", None
+    elif len(set(data)) == 1:
+        msg = "string with repeating character cannot be encoded"
+        logging.error(msg)
+        return data, None
+    else:
+        code_tree = make_tree(make_frequencies(data))
+        code_map = make_code_map(code_tree)
+        encode = ''.join([code_map[char] for char in data])
+        return encode, code_tree
 
 
 def huffman_decoding(data, tree):
-    code_tree = tree
-    decode_chars = []
-    for bit in data:
-        if bit == '0':
-            code_tree = code_tree[1]
-        else:
-            code_tree = code_tree[2]
-        if len(code_tree) == 1:
-            freq, label = code_tree[0]
-            decode_chars.append(label)
-            code_tree = tree
-    return ''.join(decode_chars)
+    if data == "":
+        msg = "empty string cannot be decoded."
+        logging.error(msg)
+    elif tree is None:
+        msg = "string with repeating character cannot be decoded"
+        logging.error(msg)
+    else:
+        code_tree = tree
+        decode_chars = []
+        for bit in data:
+            if bit == '0':
+                code_tree = code_tree[1]
+            else:
+                code_tree = code_tree[2]
+            if len(code_tree) == 1:
+                freq, label = code_tree[0]
+                decode_chars.append(label)
+                code_tree = tree
+        return ''.join(decode_chars)
 
 
 if __name__ == "__main__":
@@ -116,6 +133,26 @@ if __name__ == "__main__":
 
     print("The size of the decoded data is: {}".format(sys.getsizeof(decoded_data)))
     print("The content of the encoded data is: {}".format(decoded_data))
+
+    # extreme case test
+    print('-' * 60)
+    extreme_sentence = ""
+    print("The size of the data is: {}".format(sys.getsizeof("")))
+    print("The content of the data is: {}".format(extreme_sentence))
+    #
+    encoded_data, tree = huffman_encoding(extreme_sentence)
+    decoded_data = huffman_decoding(encoded_data, tree)
+
+    # extreme case test 2
+    print('-' * 60)
+    extreme_sentence2 = "aaaaa"
+    print("The size of the data is: {}".format(sys.getsizeof("")))
+    print("The content of the data is: {}".format(extreme_sentence2))
+    #
+    encoded_data, tree = huffman_encoding(extreme_sentence2)
+    decoded_data = huffman_decoding(encoded_data, tree)
+
+
 
 # The size of the data is: 97
 # The content of the data is: abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUV

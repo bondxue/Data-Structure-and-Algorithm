@@ -52,3 +52,16 @@ block3 = chain.head.next.next
 print('Pass' if block2.hash == block3.previous_hash else 'Fail')  # print Pass
 
 print(block3.data)  # print block3
+
+# test case 2
+chain2 = BlockChain()
+chain2.add(None)
+chain2.add('aaa')
+block1 = chain2.head
+
+block2 = chain2.head.next
+print(block1.data)  # print aaa
+
+# extreme case test
+chain3 = BlockChain()
+print(chain3.head)  # print None
