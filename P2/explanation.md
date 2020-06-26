@@ -54,4 +54,16 @@ Firstly, iterate the array counting number of 0's, 1's, and 2's, then overwrite 
 
 
 
+#### Problem 6 - Max and Min in a Unsorted Array
+
+Set the initial `min_num` and `max_num` values as the first value in the array. It then iterates once through and adjusts them accordingly.
+
+**Complexity Analysis:**
+
+- **Time complexity:** O(n).
+  The array is iterated through once.
+- **Space Complexity:** O(1).
+  No additional memory is allocated.
+
+
 
