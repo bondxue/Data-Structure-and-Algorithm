@@ -54,6 +54,40 @@ Firstly, iterate the array counting number of 0's, 1's, and 2's, then overwrite 
 
 
 
+#### Problem 5 - Autocomplete with Tries
+
+##### Find Method:
+
++ **Time Complexity:** O(n)
+
+  Each character needs to be iterated through
+
++ **Space Complexity:** O(1)
+
+  No memory is allocated
+
+##### Insert Method:
+
++ **Time Complexity:** O(n)
+
+  Each character needs to be iterated through
+
++ **Space Complexity:** O(n)
+
+  n characters need to be allocated
+
+##### Suffixes Method:
+
++ **Time Complexity:** O(n)
+
+  Each character needs to be iterated through
+
++ **Space Complexity:** O(1)
+
+  No memory is allocated
+
+
+
 #### Problem 6 - Max and Min in a Unsorted Array
 
 Set the initial `min_num` and `max_num` values as the first value in the array. It then iterates once through and adjusts them accordingly.
@@ -64,6 +98,12 @@ Set the initial `min_num` and `max_num` values as the first value in the array. 
   The array is iterated through once.
 - **Space Complexity:** O(1).
   No additional memory is allocated.
+
+
+
+#### Problem 7: Request Routing in a Web Server with a Trie
+
+
 
 
 
