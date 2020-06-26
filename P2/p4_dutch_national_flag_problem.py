@@ -5,7 +5,18 @@ def sort_012(input_list):
     Args:
        input_list(list): List to be sorted
     """
-    pass
+
+    bucket = [0] * 3
+    for i in input_list:
+        bucket[i] += 1
+
+    del input_list[:]
+    for i in range(3):
+        for j in range(bucket[i]):
+            input_list.append(i)
+
+    return input_list
+
 
 def test_function(test_case):
     sorted_array = sort_012(test_case)
@@ -15,6 +26,9 @@ def test_function(test_case):
     else:
         print("Fail")
 
+
 test_function([0, 0, 2, 2, 2, 1, 1, 1, 2, 0, 2])
 test_function([2, 1, 2, 0, 0, 2, 1, 0, 1, 0, 0, 2, 2, 2, 1, 2, 0, 0, 0, 2, 1, 0, 2, 0, 0, 1])
 test_function([0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2])
+test_function([])  # test empty input list
+test_function([1])  # test single value
