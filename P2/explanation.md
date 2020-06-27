@@ -35,7 +35,7 @@ We know that a maximum number can be formed from given digits (0-9) when the lar
 **Complexity Analysis:**
 
 - **Time complexity:** O(nlog n).
-  The time complexity of merged sort is O(nlog n) and iterate the sorted array twice with O(n), so the total complexity is O(log n).
+  The time complexity of merged sort is O(nlog n) and iterate the sorted array twice with O(n), so the total complexity is O(n log n).
 - **Space Complexity:** O(n).
   Merge sort space complexity is O(n) as it must create a copy of the entire list.
 
@@ -64,9 +64,9 @@ To generate suffixes, we first call `find` on the Trie class to find our prefix.
 
 ##### Find Method:
 
-+ **Time Complexity:** O(n^2)
++ **Time Complexity:** O(n*m)
 
-  Each character needs to be iterated through and `in` keyword in python takes O(n) to run
+  `n` is the number of inputs and `m` is the length of the average input
 
 + **Space Complexity:** O(1)
 
@@ -115,9 +115,9 @@ My implementation is exactly the same as problem 5 with some slight differences.
 
 ##### Find Method:
 
-+ **Time Complexity:** O(n^2) 
++ **Time Complexity:** O(n*m) 
 
-  Each part of the path needs to be iterated through and `in` keyword in python takes O(n) to run
+  `n` is the number of  path part and `m` is the length of the average length of path part
 
 + **Space Complexity:** O(1)
 
