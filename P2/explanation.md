@@ -35,7 +35,7 @@ We know that a maximum number can be formed from given digits (0-9) when the lar
 **Complexity Analysis:**
 
 - **Time complexity:** O(nlog n).
-  The time complexity of merged sort is O(log n) and iterate the sorted array twice with O(n), so the total complexity is O(log n).
+  The time complexity of merged sort is O(nlog n) and iterate the sorted array twice with O(n), so the total complexity is O(log n).
 - **Space Complexity:** O(n).
   Merge sort space complexity is O(n) as it must create a copy of the entire list.
 
@@ -43,12 +43,14 @@ We know that a maximum number can be formed from given digits (0-9) when the lar
 
 #### Problem 4 - Dutch National Flag Problem
 
-Firstly, iterate the array counting number of 0's, 1's, and 2's, then overwrite array with total number of 0's, then 1's and followed by 2's.
+Using two pointers, one records the number of `0`  and the other records the number of `0` and `1`.
 
 **Complexity Analysis:**
 
 - **Time complexity:** O(n).
-  Iterate the array once for counting number O(n), then need O(n) to overwrite array
+
+  Only iterate the input array once. 
+
 - **Space Complexity:** O(1).
   Since we overwrite input list, so no extra space needed. 
 
@@ -56,11 +58,15 @@ Firstly, iterate the array counting number of 0's, 1's, and 2's, then overwrite 
 
 #### Problem 5 - Autocomplete with Tries
 
+Tried to use `yeild` function instread of recursive method. 
+
+To generate suffixes, we first call `find` on the Trie class to find our prefix. Then, with the returned node, we can call `suffixes` on the TrieNode class. This is a simple wrapper to join the yielded result of `generate_suffixes`, which uses recursion to search all nodes in children and call itself until is_word is True.
+
 ##### Find Method:
 
-+ **Time Complexity:** O(n)
++ **Time Complexity:** O(n^2)
 
-  Each character needs to be iterated through
+  Each character needs to be iterated through and `in` keyword in python takes O(n) to run
 
 + **Space Complexity:** O(1)
 
@@ -84,7 +90,7 @@ Firstly, iterate the array counting number of 0's, 1's, and 2's, then overwrite 
 
 + **Space Complexity:** O(1)
 
-  No memory is allocated
+  No memory is allocated besides a simple variable `generated`. 
 
 
 
@@ -104,6 +110,28 @@ Set the initial `min_num` and `max_num` values as the first value in the array. 
 #### Problem 7: Request Routing in a Web Server with a Trie
 
 My implementation is exactly the same as problem 5 with some slight differences. I had to string clean the path by removing outside occurences of `/` with strip and then split it.
+
+
+
+##### Find Method:
+
++ **Time Complexity:** O(n^2) 
+
+  Each part of the path needs to be iterated through and `in` keyword in python takes O(n) to run
+
++ **Space Complexity:** O(1)
+
+  No memory is allocated
+
+##### Insert Method:
+
++ **Time Complexity:** O(n)
+
+  Each part of the path needs to be iterated through
+
++ **Space Complexity:** O(n)
+
+  n characters need to be allocated
 
 ##### Add Handler Method
 

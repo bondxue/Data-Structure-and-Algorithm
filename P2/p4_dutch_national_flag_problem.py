@@ -6,16 +6,29 @@ def sort_012(input_list):
        input_list(list): List to be sorted
     """
 
-    bucket = [0] * 3
-    for i in input_list:
-        bucket[i] += 1
-
-    del input_list[:]
-    for i in range(3):
-        for j in range(bucket[i]):
-            input_list.append(i)
+    i = j = 0  # j records number of '0' and '1'， and i records number of '0'
+    for k in range(len(input_list)):
+        v = input_list[k]
+        input_list[k] = 2
+        if v < 2:  # if less than 2, assign 1
+            input_list[j] = 1
+            j += 1
+        if v == 0:  # if equal to 0, assign 0
+            input_list[i] = 0
+            i += 1
 
     return input_list
+
+    # bucket = [0] * 3
+    # for i in input_list:
+    #     bucket[i] += 1
+    #
+    # del input_list[:]
+    # for i in range(3):
+    #     for j in range(bucket[i]):
+    #         input_list.append(i)
+    #
+    # return input_list
 
 
 def test_function(test_case):
