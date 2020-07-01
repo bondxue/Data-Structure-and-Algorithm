@@ -1,51 +1,55 @@
-import heapq
-import math
+from math import sqrt
+from heapq import *
+
+
+def heuristic(p1, p2):
+    return sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
 
 
 def shortest_path(M, start, goal):
+    """
+    A* search algorithm to find the shortest path
+    Args:
+        M: map model (map_10 or map_40)
+        start: start node - int
+        goal: target node - int
+
+    Returns:
+        path: the shortest path - list
+    """
+
     print("shortest path called")
+
     came_from = {}
-    cost_so_far = {}
+    g_score = {}
     came_from[start] = None
-    cost_so_far[start] = 0
-    frontier = [(0, start)]
+    g_score[start] = 0
+    open_heap = []
+    heappush(open_heap, (0, start))
 
-    while len(frontier) > 0:
-        node = heapq.heappop(frontier)[1]
+    while open_heap:
+        current = heappop(open_heap)[1]
 
-        if node == goal:
+        if current == goal:
             break
 
-        for neighbor in M.roads[node]:
-            path_cost = distance(M.intersections[node], M.intersections[neighbor])
-            new_cost = cost_so_far[node] + path_cost
+        for neighbor in M.roads[current]:
+            new_g_score = g_score[current] + heuristic(M.intersections[current], M.intersections[neighbor])
 
-            if neighbor not in cost_so_far or new_cost < cost_so_far[neighbor]:
-                came_from[neighbor] = node
-                cost_so_far[neighbor] = new_cost
-                heapq.heappush(frontier, (new_cost, neighbor))
+            if neighbor not in g_score or new_g_score < g_score[neighbor]:
+                came_from[neighbor] = current
+                g_score[neighbor] = new_g_score
+                heappush(open_heap, (new_g_score, neighbor))
 
-    return best_route(came_from, start, goal)
-
-
-def distance(start, end):
-    # path cost is distance between two points
-    return math.hypot(end[0] - start[0], end[1] - start[1])
-
-
-def best_route(came_from, start, goal):
-    # traverse backwards to find optimal path
+    optimal_path = []
     node = goal
-    path = []
 
-    if node not in came_from:
-        print(f"Node: {node} not found in map.")
-        return
-
-    while node != start:
-        path.append(node)
+    while came_from[node]:
+        optimal_path.append(node)
         node = came_from[node]
-    path.append(start)
-    path.reverse()
-    print(path)
-    return path
+    else:
+        optimal_path.append(node)
+
+    optimal_path.reverse()
+
+    return optimal_path
